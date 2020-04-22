@@ -10,6 +10,8 @@ local open = io.open
 local tostring = tostring
 local sub = string.sub
 local clock = os.clock
+local time = os.time
+local difftime = os.difftime
 local string = string
 
 --
@@ -45,13 +47,16 @@ end
 --
 --  runf running test
 local runf = function(f, name_f)
-
+  -- usar .clock()? ou .time()?
   print("Testing function: " .. name_f)
-  local t1 = clock()
+  local starttime = clock()
+  -- local starttime = time()
   f()
-  local t2 = clock()
-  local tt = string.format("Tempo de execução: %gs\n", t2-t1) 
-  print("Tested with success! " .. tt .. "\n")
+  local endtime = clock()
+  -- local endtime = time()
+  local finaltime = string.format("Time: %gs\n", endtime-starttime) 
+  -- local finaltime = string.format("Time: %gs\n", difftime(endtime, starttime))
+  print("Tested with success! " .. finaltime .. "\n")
 end
 
 --
@@ -116,7 +121,7 @@ end
 -- lstr.split test
 local test_split3 = function()
   local link = "/path/dir/dir2/dir3/"
-  local check = {"", "path", "dir", "dir2", "dir3"}
+  local check = {"", "path", "dir", "dir2", "dir3", ""}
   local c = lstr.split(link, "/")
   -- print(table.unpack(c))
   -- print(words_count[i][2] .. " -> " .. words_count[i][1] .. " = " .. c)

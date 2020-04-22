@@ -30,7 +30,7 @@ local lstr = {}
 
 
 -- count(s, subs) retorna o número de ocorrências 
--- de subs em s
+-- da string subs em s
 -------------------------------------------------
 -- param s: string
 -- param sub: string
@@ -40,10 +40,12 @@ lstr.count = function(s, subs)
   return _select(2, _gsub(s, subs, ""))
 end
 
-
---
---
---
+-- endwith(s, subs) retorna true se a string s termina
+-- com a string sub, do contrário retorna false
+-------------------------------------------------
+-- param s: string
+-- param subs: string
+-- return: boolean
 lstr.endwith = function(s, subs)
   local ns, nsubs = #s, #subs-1
   nsubs = ns - nsubs
@@ -66,11 +68,11 @@ end
 
 
 -- replace(s, old, new) retorna uma nova string 
--- substituindo os valores old em s por new
+-- substituindo a string old em s pela string new
 -------------------------------------------------
 -- param s: string
--- param old: string, valor a ser substituido
--- param new: string, valor substituto
+-- param old: string
+-- param new: string
 -- return: string  
 -------------------------------------------------
 lstr.replace = function(s, old, new)
@@ -79,7 +81,7 @@ end
 
 
 -- split(s, sep) split divide s que contém um delimitador sep 
--- na lista de substrings entre esse delimitador.  
+-- em uma lista (table) de substrings entre esse delimitador.  
 -------------------------------------------------
 -- param s: string
 -- param sep: string
@@ -104,8 +106,8 @@ lstr.split = function(s, sep)
 end
 
 
--- startwith(s, subs) retorna true se o inicio 
--- de s for subs, do contrário retorna false
+-- startwith(s, subs) retorna true se a string s
+-- começa com a string subs, do contrário returna false
 -------------------------------------------------
 -- param s: string
 -- param subs: string
@@ -126,9 +128,9 @@ lstr.strip = function(s)
 end
 
 
--- lstr.trim(str, sep) alias para lstr.strip
+-- lstr.trim(str, sep) referência para lstr.strip
 -------------------------------------------------
 lstr.trim = lstr.strip
 
 
-return lstr     
+return lstr
